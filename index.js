@@ -17,7 +17,8 @@ module.exports = function(connect) {
   var RedisStore = require('connect-redis')(connect);
   
   function ConnectHerokuRedis(options) {
-    var redisToGo = (process.env.REDISTOGO_URL || process.env.REDISCLOUD_URL) ? parse(process.env.REDISCLOUD_URL) : false;
+    var redis_url = process.env.REDISTOGO_URL || process.env.REDISCLOUD_URL;
+    var redisToGo = redis_url || false;
     console.log("redisToGoURL", redisToGo);
     options = options || {};
 
